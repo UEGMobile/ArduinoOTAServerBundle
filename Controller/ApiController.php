@@ -32,11 +32,7 @@ class ApiController extends Controller
                 ->getRepository("UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary")
                 ->findAll();        
         $binary = $binarys[0];        
-        $this->container->get('logger')->debug($binary->getBinaryName());
-        $this->container->get('logger')->debug(sizeof($binary->getBinaryFile()));
-        $this->container->get('logger')->debug($binary->getBinaryFile());
                 
-        /*
         if(!$request->headers->get('HTTP_X_ESP8266_STA_MAC') ||
            !$request->headers->get('HTTP_X_ESP8266_AP_MAC') ||
            !$request->headers->get('HTTP_X_ESP8266_FREE_SPACE') ||
@@ -50,15 +46,10 @@ class ApiController extends Controller
             $view->setData('Only for ESP8266 updater!');
             return $view;
         }
-        */
         $sdkVersion = $request->headers->get('HTTP_X_ESP8266_SDK_VERSION');
         $version = $request->headers->get('HTTP_X_ESP8266_VERSION');
         $userAgent = $request->headers->get('user-agent');
         $mac = $request->headers->get('HTTP_X_ESP8266_STA_MAC');
-        
-        $mac = 'aaas';
-        $sdkVersion = '1.0';
-        $version= '1.2';
         
         // Query OTA Binary
         $otaDeviceMac = $this->container->get('doctrine')->getManager()
