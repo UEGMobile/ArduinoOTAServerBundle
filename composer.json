@@ -1,5 +1,5 @@
 {
-    "name" : "UEGMobile/ArduinoOTAServerBundle",
+    "name" : "uegmobile/arduino-ota-Server-bundle",
     "description" : "This Bundle provides a HTTP Server to manage OTA arduino binary files",
     "type" : "symfony-bundle",
     "version": "0.0.1",
