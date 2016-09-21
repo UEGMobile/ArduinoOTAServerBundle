@@ -17,7 +17,7 @@ use FOS\RestBundle\View\View,
 class ApiController extends Controller
 {
     /**
-     * @Get("/updateBinary", name="")
+     * @Get("/updateBinary")
      * @return View
      */
     public function getUpdateBinaryAction()
