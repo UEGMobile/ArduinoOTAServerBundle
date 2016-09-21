@@ -1,0 +1,29 @@
+UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary:
+    type: entity
+    table: aotas_binary
+    repositoryClass: UEGMobile\ArduinoOTAServerBundle\Repository\OTABinaryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        binaryName:
+            type: string
+            length: 255
+        binaryVersion:
+            type: string
+            length: '64'
+        userAgent:
+            type: string
+            length: 255
+        sdkVersion:
+            type: string
+            length: '64'
+        binaryFile:
+            type: blob
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

@@ -1,0 +1,24 @@
+UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac:
+    type: entity
+    table: aotas_device_mac
+    repositoryClass: UEGMobile\ArduinoOTAServerBundle\Repository\OTADeviceMacRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        mac:
+            type: string
+            length: '64'
+        createdAt:
+            type: datetime
+            column: created_at
+    manyToOne:
+        otaBinary:
+            targetEntity: OTABinary
+            joinColumn:
+                name: otaBinary
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
