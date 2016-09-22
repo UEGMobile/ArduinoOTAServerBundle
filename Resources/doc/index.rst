@@ -59,16 +59,6 @@ Import the routing definition in ``routing.yml``:
       resource: "@UEGMobileArduinoOTAServerBundle/Resources/config/routing.yml"
       prefix:   /aotaserver
 
-Step 4: Configure the Bundle
-----------------------------
-
-Enable the bundle's configuration in ``app/config/config.yml``:
-
-.. code-block:: yaml
-
-    # app/config/config.yml
-    aota_server: ~
-
 
 Usage
 -----
