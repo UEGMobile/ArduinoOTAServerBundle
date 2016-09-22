@@ -27,29 +27,25 @@ class ApiController extends Controller
         $request = $this->container->get('request');
         
         $this->container->get('logger')->debug(json_encode($request->headers->all()));
-        
-        $binarys = $this->container->get('doctrine')->getManager()
-                ->getRepository("UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary")
-                ->findAll();        
-        $binary = $binarys[0];        
-                
-        if(!$request->headers->get('HTTP_X_ESP8266_STA_MAC') ||
-           !$request->headers->get('HTTP_X_ESP8266_AP_MAC') ||
-           !$request->headers->get('HTTP_X_ESP8266_FREE_SPACE') ||
-           !$request->headers->get('HTTP_X_ESP8266_SKETCH_SIZE') ||
-           !$request->headers->get('HTTP_X_ESP8266_SKETCH_MD5') ||
-           !$request->headers->get('HTTP_X_ESP8266_CHIP_SIZE') ||
-           !$request->headers->get('HTTP_X_ESP8266_SDK_VERSION') ||
-           !$request->headers->get('HTTP_X_ESP8266_VERSION')
+                      
+        $this->container->get('logger')->debug($request->headers->get('x-esp8266-ap-mac'));
+        if(!$request->headers->get('x-esp8266-sta-mac') ||
+           !$request->headers->get('x-esp8266-ap-mac') ||
+           !$request->headers->get('x-esp8266-free-space') ||
+           !$request->headers->get('x-esp8266-sketch-size') ||
+           !$request->headers->get('x-esp8266-chip-size') ||
+           !$request->headers->get('x-esp8266-sdk-version') ||
+           !$request->headers->get('x-esp8266-version')
         ){
+            $this->container->get('logger')->debug('Only for ESP8266 updater!');
             $view->setStatusCode(403);
             $view->setData('Only for ESP8266 updater!');
             return $view;
         }
-        $sdkVersion = $request->headers->get('HTTP_X_ESP8266_SDK_VERSION');
-        $version = $request->headers->get('HTTP_X_ESP8266_VERSION');
+        $sdkVersion = $request->headers->get('x-esp8266-sdk-version');
+        $version = $request->headers->get('x-esp8266-version');
         $userAgent = $request->headers->get('user-agent');
-        $mac = $request->headers->get('HTTP_X_ESP8266_STA_MAC');
+        $mac = $request->headers->get('x-esp8266-sta-mac');
         
         // Query OTA Binary
         $otaDeviceMac = $this->container->get('doctrine')->getManager()
@@ -74,8 +70,8 @@ class ApiController extends Controller
             $otaBinary = $otaDeviceMac[0]->getOtaBinary();
             $response = new Response(stream_get_contents($otaBinary->getBinaryFile()), 200, array(
                 'Content-Type' => 'application/octet-stream',
-                'Content-Length' => sizeof($binary->getBinaryFile()),
-                'Content-Disposition' => 'attachment; filename="'.$binary->getBinaryName().'"',
+                'Content-Length' => sizeof($otaBinary->getBinaryFile()),
+                'Content-Disposition' => 'attachment; filename="'.$otaBinary->getBinaryName().'"',
             ));        
             return $response;
         }
