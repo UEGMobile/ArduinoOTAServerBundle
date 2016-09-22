@@ -56,7 +56,7 @@ Import the routing definition in ``routing.yml``:
 
   # app/config/routing.yml
   UEGMobileArduinoOTAServerBundle:
-      resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+      resource: "@UEGMobileArduinoOTAServerBundle/Resources/config/routing.yml"
       prefix:   /aotaserver
 
 Step 4: Configure the Bundle
