@@ -17,6 +17,8 @@
         "php":                            "^5.5.9|~7.0",
         "psr/log":                        "^1.0",
         "symfony/symfony":                "^2.7",
+        "doctrine/orm":                   "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle":       "~1.2",
         "friendsofsymfony/rest-bundle":   "^1.7"
     },
     "autoload" : {
