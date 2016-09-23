@@ -7,17 +7,18 @@ ArduinoOTAServerBundle
 [![License](https://poser.pugx.org/uegmobile/arduino-ota-server-bundle/license)](https://packagist.org/packages/uegmobile/arduino-ota-server-bundle)
 
 The **ArduinoOTAServerBundle** provides a HTTP Server to manage OTA 
-arduino binary files.
+for Arduino with ESP8266 wifi chip.
 
 Documentation
 -------------
+
+This plugin is developer for [Arduino core for ESP8266 WiFi chip](https://github.com/esp8266/Arduino/). See section https://github.com/esp8266/Arduino/blob/master/doc/ota_updates/readme.md#http-server
 
 For documentation, see:
 
     Resources/doc/
 
 [Read the documentation](https://github.com/UEGMobile/ArduinoOTAServerBundle/blob/master/Resources/doc/index.rst)
-
 
 
 License

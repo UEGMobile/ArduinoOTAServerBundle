@@ -72,7 +72,10 @@ class ApiController extends Controller
                 'Content-Type' => 'application/octet-stream',
                 'Content-Length' => sizeof($otaBinary->getBinaryFile()),
                 'Content-Disposition' => 'attachment; filename="'.$otaBinary->getBinaryName().'"',
-            ));        
+            ));      
+            $this->container->get('logger')
+                ->debug('Download '.$otaBinary->getBinaryName().' ('.$otaBinary->getId().')');
+  
             return $response;
         }
         
