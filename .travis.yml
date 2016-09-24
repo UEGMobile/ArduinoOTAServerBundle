@@ -38,5 +38,3 @@ before_install:
 
 install:
     - composer update $COMPOSER_FLAGS
-
-script: phpunit -v --coverage-text
