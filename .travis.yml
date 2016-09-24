@@ -5,10 +5,9 @@ sudo: false
 php:
   - 5.5
 
-install:
-  - composer install --prefer-source
-
 before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
   - mkdir -p build/logs
   - rm -rf app/cache/*/*
 
