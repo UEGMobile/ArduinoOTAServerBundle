@@ -7,6 +7,7 @@ php:
 
 before_install:
   - export PATH="$PATH:$HOME/.composer/vendor/bin"
+  - echo $PATH 
 
 before_script:
   - composer install --prefer-source --no-interaction --dev
