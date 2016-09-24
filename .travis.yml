@@ -1,0 +1,11 @@
+language: php
+
+php:
+  - 5.5
+  
+before_script:
+  - curl -s http://getcomposer.org/installer | php --
+  - php composer.phar install --dev
+  - php composer.phar require uegmobile/arduino-ota-server-bundle:dev-master
+
+script: phpunit --coverage-text
