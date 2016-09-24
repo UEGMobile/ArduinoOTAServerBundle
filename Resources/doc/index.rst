@@ -75,8 +75,8 @@ Run doctrine commands to update your database model:
 Usage
 -----
 
-Commands
-________
+Register binaries with Symfony commands
+---------------------------------------
 
 * Register new binary to be available in OTA server
 
@@ -121,7 +121,44 @@ Example:
     | 2  | arduino.1.2.02.bin         | ESP8266-http-Update | 1.5.3(aec24ac9) |
     +----+----------------------------+---------------------+-----------------+
 
-Service
-________
+Control binaries with Symfony service
+---------------------------------------
 
-(next version)
+TODO: next version
+
+Configure arduino
+------------------------
+
+See section https://github.com/esp8266/Arduino/blob/master/doc/ota_updates/readme.md#http-server
+
+.. code-block:: bash
+
+    void upgrade_firmware(){
+        Serial.println("upgrade_firmware...");
+
+        t_httpUpdate_return ret = ESPhttpUpdate.update(CLOUD_SERVER_IP, 
+            CLOUD_SERVER_PORT, 
+            "/app_dev.php/aotaserver/updateBinary",
+            FIRMWARE_VERSION);
+            
+        switch(ret) {
+            case HTTP_UPDATE_FAILED:
+                Serial.println("[update] Update failed.");
+                break;
+            case HTTP_UPDATE_NO_UPDATES:
+                Serial.println("[update] Update no Update.");
+                break;
+            case HTTP_UPDATE_OK:
+                Serial.println("[update] Update ok."); // may not called we reboot the ESP
+                break;
+        }
+        Serial.println("upgrade_firmware...done!  ");
+    }
+
+
+
+
+
+
+
+
