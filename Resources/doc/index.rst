@@ -59,6 +59,15 @@ Import the routing definition in ``routing.yml``:
       resource: "@UEGMobileArduinoOTAServerBundle/Resources/config/routing.yml"
       prefix:   /aotaserver
 
+Step 4: Update Database Model
+---------------------------
+
+Run doctrine commands to update your database model:
+
+  $>php app/console doctrine:migrations:diff
+
+  $>php app/console doctrine:migrations:migrate
+
 
 Usage
 -----
