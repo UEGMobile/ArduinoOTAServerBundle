@@ -2,14 +2,14 @@
 <phpunit>
   <testsuites>
     <testsuite name="UEGMobileArduinoOTAServerBundle Test Suite">
-      <directory suffix="Test.php">./Tests/Controller</directory>
+      <directory suffix="Test.php">./Tests</directory>
     </testsuite>
   </testsuites>
   <filter>
     <whitelist>
       <directory>./</directory>
       <exclude>
-        <directory>./Tests</directory>
+        <directory>./Tests/Controller</directory>
       </exclude>
     </whitelist>
   </filter>
