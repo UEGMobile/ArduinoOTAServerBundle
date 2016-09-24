@@ -8,7 +8,10 @@
         "email" : "pablo.nunez@uegmobile.com"
     }],
     "keywords" : [
-        "HTTP Server OTA Arduino"
+        "Arduino",
+        "OTA",
+        "Server",
+        "HTTP"
     ],
     "support": {
         "issues": "https://github.com/UEGMobile/ArduinoOTAServerBundle/issues"
