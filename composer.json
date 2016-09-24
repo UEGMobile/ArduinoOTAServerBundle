@@ -38,7 +38,5 @@
             "UEGMobile\\ArduinoOTAServerBundle" : ""
         }
     },
-    "target-dir" : "UEGMobile/ArduinoOTAServerBundle",
-    "repositories" : [{
-    }]
+    "target-dir" : "UEGMobile/ArduinoOTAServerBundle"    
 }
