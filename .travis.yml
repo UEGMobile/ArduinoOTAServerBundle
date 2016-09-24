@@ -6,6 +6,7 @@ php:
   - 5.5
 
 before_script:
+  - curl -s http://getcomposer.org/installer | php --
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
   - mkdir -p build/logs
