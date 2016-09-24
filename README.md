@@ -68,8 +68,8 @@ Step 3: Register the Routes
 
 Import the routing definition in ``routing.yml``:
 
-  # app/config/routing.yml
-  UEGMobileArduinoOTAServerBundle:
+    # app/config/routing.yml
+    UEGMobileArduinoOTAServerBundle:
       resource: "@UEGMobileArduinoOTAServerBundle/Resources/config/routing.yml"
       prefix:   /aotaserver
 
