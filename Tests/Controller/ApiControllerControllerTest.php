@@ -11,6 +11,8 @@ class ApiControllerControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/updateBinary');
+
+        $this->assertNotEqual(500, $client->getResponse()->getStatusCode());
     }
 
 }
