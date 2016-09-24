@@ -5,12 +5,8 @@ language: php
 php:
   - 5.5
 
-before_install:
-  - export PATH="$PATH:$HOME/.composer/vendor/bin"
-  - echo $PATH 
-
 before_script:
-  - composer install --prefer-source --no-interaction --dev
+  - curl -s http://getcomposer.org/installer | php --
 
 install:
     - composer update $COMPOSER_FLAGS
