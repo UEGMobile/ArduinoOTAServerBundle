@@ -12,7 +12,7 @@
     ],
     "support": {
         "issues": "https://github.com/UEGMobile/ArduinoOTAServerBundle/issues"
-    }
+    },
     "license" : [
         "MIT"
     ],
