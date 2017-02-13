@@ -5,7 +5,6 @@ namespace UEGMobile\ArduinoOTAServerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FOS\RestBundle\View\View,
     FOS\RestBundle\Controller\Annotations\Get,
     FOS\RestBundle\Controller\Annotations\Put,
@@ -26,9 +25,8 @@ class ApiController extends Controller
         $view = View::create();
         $request = $this->container->get('request');
         
-        $this->container->get('logger')->debug(json_encode($request->headers->all()));
+        //$this->container->get('logger')->debug(json_encode($request->headers->all()));
                       
-        $this->container->get('logger')->debug($request->headers->get('x-esp8266-ap-mac'));
         if(!$request->headers->get('x-esp8266-sta-mac') ||
            !$request->headers->get('x-esp8266-ap-mac') ||
            !$request->headers->get('x-esp8266-free-space') ||
@@ -65,20 +63,22 @@ class ApiController extends Controller
                 ->setMaxResults(1)
                 ->getQuery()->getResult();
                 ;
-        if(!empty($otaDeviceMac)){
+        if(count($otaDeviceMac) > 0){
             // Return OTA Binary
             $otaBinary = $otaDeviceMac[0]->getOtaBinary();
-            $response = new Response(stream_get_contents($otaBinary->getBinaryFile()), 200, array(
+            $file = $otaBinary->getBinaryFile();
+            $response = new Response(stream_get_contents($file), 200, array(
                 'Content-Type' => 'application/octet-stream',
-                'Content-Length' => sizeof($otaBinary->getBinaryFile()),
+                'Content-Length' => fstat($file)['size'],
                 'Content-Disposition' => 'attachment; filename="'.$otaBinary->getBinaryName().'"',
-            ));      
+            ));
             $this->container->get('logger')
-                ->debug('Download '.$otaBinary->getBinaryName().' ('.$otaBinary->getId().')');
-  
+                ->debug('Download '.$otaBinary->getBinaryName().' (id:'.$otaBinary->getId().')');
+
             return $response;
         }
-        
+
+        $this->container->get('logger')->debug('No version for ESP MAC');
         $view->setStatusCode(500);
         $view->setData('No version for ESP MAC');
         return $view;

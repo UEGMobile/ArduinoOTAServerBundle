@@ -18,12 +18,6 @@ For documentation, see:
 
     Resources/doc/
 
-ArduinoOTAServerBundle
-==================
-
-The **ArduinoOTAServerBundle** provides a HTTP Server to manage OTA 
-arduino binary files.
-
 Installation
 ------------
 
