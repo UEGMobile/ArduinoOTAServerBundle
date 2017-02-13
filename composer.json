@@ -5,7 +5,9 @@
     "version": "v1.1.0",
     "authors" : [{
         "name" : "Pablo Nuñez",
-        "email" : "pablo.nunez@uegmobile.com"
+        "email" : "pablo.nunez@uegmobile.com",
+        "name" : "Fernando Martínez",
+        "email" : "fernando.martinez@uegmobile.com"
     }],
     "keywords" : [
         "Arduino",
@@ -38,5 +40,5 @@
             "UEGMobile\\ArduinoOTAServerBundle" : ""
         }
     },
-    "target-dir" : "UEGMobile/ArduinoOTAServerBundle"    
+    "target-dir" : "UEGMobile/ArduinoOTAServerBundle"
 }
