@@ -1,5 +1,2 @@
 aotaserver_api:
-    resource: "@UEGMobileArduinoOTAServerBundle/Controller/ApiController.php"
-    type:     rest
-    options:
-        i18n: false   
+    resource: "@UEGMobileArduinoOTAServerBundle/Controller/"

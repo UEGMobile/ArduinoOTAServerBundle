@@ -72,9 +72,11 @@ Step 4: Update Database Model
 
 Run doctrine commands to update your database model:
 
-    $ php app/console doctrine:migrations:diff
+    $ php app/console doctrine:migrations:diff (Symonfy 2.*)
+    $ php bin/console doctrine:migrations:diff (Symonfy 3.*)
 
-    $ php app/console doctrine:migrations:migrate
+    $ php app/console doctrine:migrations:migrate (Symonfy 2.*)
+    $ php bin/console doctrine:migrations:migrate (Symonfy 3.*)
 
 Usage
 -----
