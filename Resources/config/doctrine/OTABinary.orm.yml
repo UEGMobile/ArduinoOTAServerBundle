@@ -26,4 +26,6 @@ UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary:
         createdAt:
             type: datetime
             column: created_at
+            options:
+              default: CURRENT_TIMESTAMP
     lifecycleCallbacks: {  }
