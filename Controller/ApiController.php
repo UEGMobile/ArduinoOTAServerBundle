@@ -3,6 +3,7 @@
 namespace UEGMobile\ArduinoOTAServerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use FOS\RestBundle\View\View,
@@ -15,55 +16,69 @@ use FOS\RestBundle\View\View,
 
 class ApiController extends Controller
 {
+
     /**
      * @Get("/updateBinary")
-     * @return View
      */
-    public function getUpdateBinaryAction()
+    public function getUpdateBinaryAction(Request $request)
     {
-        
         $view = View::create();
-        $request = $this->container->get('request');
-        
-        //$this->container->get('logger')->debug(json_encode($request->headers->all()));
-                      
-        if(!$request->headers->get('x-esp8266-sta-mac') ||
-           !$request->headers->get('x-esp8266-ap-mac') ||
-           !$request->headers->get('x-esp8266-free-space') ||
-           !$request->headers->get('x-esp8266-sketch-size') ||
-           !$request->headers->get('x-esp8266-chip-size') ||
-           !$request->headers->get('x-esp8266-sdk-version') ||
-           !$request->headers->get('x-esp8266-version')
+
+        $esp8266 = false;
+        $esp32 = false;
+        $sdkVersion = null;
+        $version = null;
+        $userAgent = null;
+        $mac = null;
+        if($request->headers->get('x-esp8266-sta-mac') &&
+            $request->headers->get('x-esp8266-ap-mac') &&
+            $request->headers->get('x-esp8266-free-space') &&
+            $request->headers->get('x-esp8266-sketch-size') &&
+            $request->headers->get('x-esp8266-chip-size') &&
+            $request->headers->get('x-esp8266-sdk-version') &&
+            $request->headers->get('x-esp8266-version')
         ){
-            $this->container->get('logger')->debug('Only for ESP8266 updater!');
-            $view->setStatusCode(403);
-            $view->setData('Only for ESP8266 updater!');
-            return $view;
+            $esp8266 = true;
+            $this->container->get('logger')->debug('ESP8266 detected!');
+            $sdkVersion = $request->headers->get('x-esp8266-sdk-version');
+            $version = $request->headers->get('x-esp8266-version');
+            $userAgent = $request->headers->get('user-agent');
+            $mac = $request->headers->get('x-esp8266-sta-mac');
         }
-        $sdkVersion = $request->headers->get('x-esp8266-sdk-version');
-        $version = $request->headers->get('x-esp8266-version');
-        $userAgent = $request->headers->get('user-agent');
-        $mac = $request->headers->get('x-esp8266-sta-mac');
-        
+
+        if($request->headers->get('x-esp32-sta-mac') &&
+            $request->headers->get('x-esp32-ap-mac') &&
+            $request->headers->get('x-esp32-sdk-version')
+        ){
+            $esp32 = true;
+            $this->container->get('logger')->debug('ESP32 detected!');
+            $sdkVersion = $request->headers->get('x-esp32-sdk-version');
+            $version = $request->headers->get('x-esp32-version');
+            $userAgent = $request->headers->get('user-agent');
+            $mac = $request->headers->get('x-esp32-sta-mac');
+        }
+
+        if (!$esp32 && !$esp8266){
+            return new Response('Only for ESP8266 and ESP32 updater!', 460);
+        }
+
         // Query OTA Binary
         $otaDeviceMac = $this->container->get('doctrine')->getManager()
-                ->createQueryBuilder()
-                ->select('dm')
-                ->from('UEGMobileArduinoOTAServerBundle:OTADeviceMac', 'dm')
-                ->innerJoin('dm.otaBinary', 'ob')
-                ->where('dm.mac = :mac')
-                ->andWhere('ob.sdkVersion = :sdkVersion')
-                ->andWhere('ob.binaryVersion = :binaryVersion')
-                ->andWhere('ob.userAgent = :userAgent')
-                ->setParameter('mac',$mac)
-                ->setParameter('sdkVersion',$sdkVersion)
-                ->setParameter('binaryVersion',$version)
-                ->setParameter('userAgent',$userAgent)
-                ->addOrderBy("ob.createdAt", "DESC")
-                ->setMaxResults(1)
-                ->getQuery()->getResult();
-                ;
-        if(count($otaDeviceMac) > 0){
+            ->createQueryBuilder()
+            ->select('dm')
+            ->from('UEGMobileArduinoOTAServerBundle:OTADeviceMac', 'dm')
+            ->innerJoin('dm.otaBinary', 'ob')
+            ->where('dm.mac = :mac')
+            ->andWhere('ob.sdkVersion = :sdkVersion')
+            ->andWhere('ob.userAgent = :userAgent')
+            ->setParameter('mac',$mac)
+            ->setParameter('sdkVersion',$sdkVersion)
+            ->setParameter('userAgent',$userAgent)
+            ->addOrderBy("ob.createdAt", "DESC")
+            ->setMaxResults(1)
+            ->getQuery()->getResult();
+        ;
+        if(count($otaDeviceMac) > 0 && $version !== $otaDeviceMac[0]->getOtaBinary()->getBinaryVersion()){
             // Return OTA Binary
             $otaBinary = $otaDeviceMac[0]->getOtaBinary();
             $file = $otaBinary->getBinaryFile();
@@ -74,14 +89,10 @@ class ApiController extends Controller
             ));
             $this->container->get('logger')
                 ->debug('Download '.$otaBinary->getBinaryName().' (id:'.$otaBinary->getId().')');
-
             return $response;
         }
-
-        $this->container->get('logger')->debug('No version for ESP MAC');
-        $view->setStatusCode(500);
-        $view->setData('No version for ESP MAC');
-        return $view;
+        $this->container->get('logger')->debug('No updated version available for MAC');
+        return new Response('No updated version available', 461);
     }
 
 }

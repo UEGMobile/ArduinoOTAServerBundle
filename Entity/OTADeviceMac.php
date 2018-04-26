@@ -28,11 +28,17 @@ class OTADeviceMac
     private $createdAt;
 
     /**
+     * @var \DateTime
+     */
+    private $updateAt;
+
+    /**
      * Construct
      */
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
+        $this->setUpdateAt($this->createdAt());
     }
 
     /**
@@ -115,6 +121,30 @@ class OTADeviceMac
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     *
+     * @return OTADeviceMac
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
     }
 }
 

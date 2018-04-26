@@ -8,6 +8,10 @@ UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac:
             id: true
             generator:
                 strategy: AUTO
+    indexes:
+      mac_index:
+        columns: [ mac ]
+
     fields:
         mac:
             type: string
@@ -15,6 +19,9 @@ UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac:
         createdAt:
             type: datetime
             column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
     manyToOne:
         otaBinary:
             targetEntity: OTABinary

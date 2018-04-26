@@ -33,10 +33,19 @@ class AotaRegisterMacCommand extends ContainerAwareCommand
                 ->findOneById($binaryId);
         
         if($oatBinary){
-            $deviceMac = new OTADeviceMac();
-            $deviceMac->setMac($mac);
+
+            $deviceMac = $this->getContainer()->get('doctrine')->getManager()
+                ->getRepository("UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac")
+                ->findOneBy(['mac' => $mac]);
+
+            if(is_null($deviceMac)){
+                $deviceMac = new OTADeviceMac();
+                $deviceMac->setMac($mac);
+            }
+
+            $deviceMac->setUpdateAt(new \DateTime());
             $deviceMac->setOtaBinary($oatBinary);
-            
+
             $em = $this->getContainer()->get('doctrine')->getManager();
             $em->persist($deviceMac);
             $em->flush();

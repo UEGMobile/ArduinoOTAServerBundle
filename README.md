@@ -14,6 +14,8 @@ Documentation
 
 This plugin is developer for [Arduino core for ESP8266 WiFi chip](https://github.com/esp8266/Arduino/). See section https://github.com/esp8266/Arduino/blob/master/doc/ota_updates/readme.md#http-server
 
+Since v.1.2.0 compatible with  [Arduino core for ESP32 WiFi chip] (https://github.com/espressif/arduino-esp32).
+
 For documentation, see:
 
     Resources/doc/
@@ -78,6 +80,8 @@ Run doctrine commands to update your database model:
     $ php app/console doctrine:migrations:migrate (Symonfy 2.*)
     $ php bin/console doctrine:migrations:migrate (Symonfy 3.*)
 
+NOTE: Upgrades to v1.2.0 from previous versions require run doctrine commands again.
+
 Usage
 -----
 
@@ -93,7 +97,7 @@ Example:
     $ php app/console aotaserver:register:binary arduino.1.2.02.bin 1.2.02 ESP8266-http-Update '1.5.3(aec24ac9)' arduino.1.2.02.bin
     Register arduino.1.2.02.bin done!
 
-* Register a MAC id with a OTA Binary
+* Register/Update a MAC id with a OTA Binary. Chipset with MAC id will receive the last binary file when run ESPhttpUpdate.update method (see 'Configure arduino' section).
 
     $ php app/console aotaserver:register:mac <mac> <binaryId>
 
