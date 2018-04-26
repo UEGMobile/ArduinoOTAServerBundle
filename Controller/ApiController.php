@@ -91,9 +91,9 @@ class ApiController extends Controller
             $this->container->get('logger')
                 ->debug('Download '.$otaBinary->getBinaryName().' (id:'.$otaBinary->getId().')');
 
-            $otaDeviceMac->setActive(false);
+            $otaDeviceMac[0]->setActive(false);
             $em = $this->container->get('doctrine')->getManager();
-            $em->persist($otaDeviceMac);
+            $em->persist($otaDeviceMac[0]);
             $em->flush();
 
             return $response;
