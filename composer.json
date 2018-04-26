@@ -6,10 +6,7 @@
     "authors" : [{
         "name" : "Pablo Nuñez",
         "email" : "pablo.nunez@uegmobile.com"
-        },{
-        "name" : "Fernando Martínez",
-        "email" : "fernando.martinez@uegmobile.com"
-    }],
+        }],
     "keywords" : [
         "Arduino",
         "OTA",
@@ -29,7 +26,8 @@
         "doctrine/orm":                   "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle":       "~1.2",
         "monolog/monolog":                "~1.18",
-        "friendsofsymfony/rest-bundle":   "^1.7"
+        "friendsofsymfony/rest-bundle":   "^1.7",
+        "mmoreram/simple-doctrine-mapping": "^1.0"
     },
     "require-dev": {
         "symfony/yaml": "~2.3|~3.0",
