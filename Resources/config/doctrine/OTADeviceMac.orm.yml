@@ -26,6 +26,11 @@ UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac:
             column: updated_at
             options:
               default: CURRENT_TIMESTAMP
+        active:
+            type: boolean
+            nullable: false
+            options:
+              default: false
     manyToOne:
         otaBinary:
             targetEntity: OTABinary

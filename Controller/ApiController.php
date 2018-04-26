@@ -69,6 +69,7 @@ class ApiController extends Controller
             ->from('UEGMobileArduinoOTAServerBundle:OTADeviceMac', 'dm')
             ->innerJoin('dm.otaBinary', 'ob')
             ->where('dm.mac = :mac')
+            ->andWhere('dm.active = 1')
             ->andWhere('ob.sdkVersion = :sdkVersion')
             ->andWhere('ob.userAgent = :userAgent')
             ->setParameter('mac',$mac)
@@ -89,6 +90,12 @@ class ApiController extends Controller
             ));
             $this->container->get('logger')
                 ->debug('Download '.$otaBinary->getBinaryName().' (id:'.$otaBinary->getId().')');
+
+            $otaDeviceMac->setActive(false);
+            $em = $this->container->get('doctrine')->getManager();
+            $em->persist($otaDeviceMac);
+            $em->flush();
+
             return $response;
         }
         $this->container->get('logger')->debug('No updated version available for MAC');

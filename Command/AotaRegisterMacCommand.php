@@ -45,6 +45,7 @@ class AotaRegisterMacCommand extends ContainerAwareCommand
 
             $deviceMac->setUpdateAt(new \DateTime());
             $deviceMac->setOtaBinary($oatBinary);
+            $deviceMac->setActive(true);
 
             $em = $this->getContainer()->get('doctrine')->getManager();
             $em->persist($deviceMac);

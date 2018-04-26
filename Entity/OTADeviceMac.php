@@ -33,12 +33,18 @@ class OTADeviceMac
     private $updatedAt;
 
     /**
+     * @var bool
+     */
+    private $active;
+
+    /**
      * Construct
      */
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt($this->createdAt());
+        $this->active = false;
     }
 
     /**
@@ -146,5 +152,22 @@ class OTADeviceMac
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
 }
 
