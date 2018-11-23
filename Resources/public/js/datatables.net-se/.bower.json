@@ -1,0 +1,48 @@
+{
+  "name": "datatables.net-se",
+  "description": "DataTables for jQuery with styling for [Semantic UI](http://semantic-ui.com/)",
+  "main": [
+    "js/dataTables.semanticui.js",
+    "css/dataTables.semanticui.css"
+  ],
+  "keywords": [
+    "filter",
+    "sort",
+    "DataTables",
+    "jQuery",
+    "table",
+    "Semantic UI"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7",
+    "datatables.net": ">=1.10.13"
+  },
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "ignore": [
+    "composer.json",
+    "datatables.json",
+    "package.json"
+  ],
+  "authors": [
+    {
+      "name": "SpryMedia Ltd",
+      "homepage": "https://datatables.net"
+    }
+  ],
+  "homepage": "https://datatables.net",
+  "license": "MIT",
+  "version": "1.10.19",
+  "_release": "1.10.19",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.10.19",
+    "commit": "338df6058db2b55304d2ad636a77f7395fc45331"
+  },
+  "_source": "https://github.com/DataTables/Dist-DataTables-SemanticUI.git",
+  "_target": ">=1.10.13",
+  "_originalSource": "datatables.net-se"
+}

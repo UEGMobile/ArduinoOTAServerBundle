@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang='{{ app.request.getLocale() }}_{{ app.request.getLocale() | upper }}'>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{{ 'web.title'|trans() }}{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/uegmobilearduinootaserver/js/semantic/dist/semantic.min.css') }}" type="text/css" media="all" />
+            <link rel='stylesheet' href='{{ asset('bundles/uegmobilearduinootaserver/js/angular-loading-bar/build/loading-bar.min.css') }}' type='text/css' media='all' />
+
+            {% stylesheets output='assets/css/arduinootaserver_styles.css' filter='scss'
+                '@UEGMobileArduinoOTAServerBundle/Resources/assets/sass/web.scss'
+            %}
+                <link href="{{ asset_url }}" rel="stylesheet" type="text/css" media="all" />
+            {% endstylesheets %}
+        {% endblock stylesheets %}
+    </head>
+
+    <body class="{% block classBody %}default{% endblock %}" {{ app.debug ? 'data-env="debug"': '' }} >
+        {% block body %}
+
+        <div class="arduino-ota-web-content" >
+
+            <div class="ui container">
+            
+            <h1>{{ block('title') }}</h1>
+
+            <div class="ui menu buttons-menu">
+                <div class="menu">
+                    <div class="item">
+                        <a href="{{url('uegmobile_arduinootaserver_web_web_programs')}}" class="arduino-ota-web-button">Program</a>
+                    </div>
+                    <div class="item">
+                        <a href="{{url('uegmobile_arduinootaserver_web_web_binaries')}}" class="arduino-ota-web-button">Binaries</a>
+                    </div>
+                    <div class="item">
+                        <a href="{{url('uegmobile_arduinootaserver_web_web_devices')}}" class="arduino-ota-web-button">Devices</a>
+                    </div>
+                </div>
+            </div>
+
+            {% block content %}
+            {% endblock content %}            
+            </div>
+        </div>
+
+        {% endblock body %}
+
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/moment/min/moment.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/jquery/dist/jquery.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/semantic/dist/semantic.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/moment-timezone/builds/moment-timezone-with-data.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular/angular.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-animate/angular-animate.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-sanitize/angular-sanitize.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-ui-router/release/angular-ui-router.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-translate/angular-translate.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-uuid4/angular-uuid4.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-timeago/dist/angular-timeago.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-paging/dist/paging.min.js') }}"></script>
+            <script type='text/javascript' src='{{ asset('bundles/uegmobilearduinootaserver/js/angular-loading-bar/build/loading-bar.min.js') }}'></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/ng-file-upload/ng-file-upload.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/ng-file-upload/ng-file-upload-shim.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/datatables.net/js/jquery.dataTables.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/datatables.net-se/js/dataTables.semanticui.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/datatables.net-select/js/dataTables.select.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/datatables.net-responsive-se/js/responsive.semanticui.min.js') }}"></script>
+
+            {% javascripts output="assets/js/arduinootaserver.common.angular.js" filter='?uglifyjs2'
+            '@UEGMobileArduinoOTAServerBundle/Resources/assets/js/angular/app.js'
+            '@UEGMobileArduinoOTAServerBundle/Resources/assets/js/angular/factories.js'
+            '@UEGMobileArduinoOTAServerBundle/Resources/assets/js/angular/directives.js'
+            %}
+            <script src="{{ asset_url }}" type="text/javascript" ></script>
+            {% endjavascripts %}
+
+        {% endblock javascripts %}
+
+
+        </div>
+    </body>
+</html>

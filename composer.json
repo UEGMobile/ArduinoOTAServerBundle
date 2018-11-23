@@ -2,7 +2,7 @@
     "name" : "uegmobile/arduino-ota-server-bundle",
     "description" : "This Bundle provides a HTTP Server to manage OTA arduino binary files",
     "type" : "symfony-bundle",
-    "version": "v1.2.0",
+    "version": "v2.0.0",
     "authors" : [{
         "name" : "Pablo Nuñez",
         "email" : "pablo.nunez@uegmobile.com"
@@ -11,7 +11,8 @@
         "Arduino",
         "OTA",
         "Server",
-        "HTTP"
+        "HTTP",
+        "UI"
     ],
     "support": {
         "issues": "https://github.com/UEGMobile/ArduinoOTAServerBundle/issues"
@@ -23,11 +24,16 @@
         "php":                            ">=5.3.2",
         "psr/log":                        "^1.0",
         "symfony/symfony":                "^2.3|~3.0",
+        "symfony/assetic-bundle":          "^2.8",
         "doctrine/orm":                   "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle":       "~1.2",
+        "doctrine/doctrine-migrations-bundle": "^1.1",
         "monolog/monolog":                "~1.18",
         "friendsofsymfony/rest-bundle":   "^1.7",
-        "mmoreram/simple-doctrine-mapping": "^1.0"
+        "mmoreram/simple-doctrine-mapping": "^1.0",
+        "white-october/pagerfanta-bundle": "^1.2",
+        "willdurand/hateoas":              "^2.10",
+        "willdurand/hateoas-bundle":       "^1.2"
     },
     "require-dev": {
         "symfony/yaml": "~2.3|~3.0",

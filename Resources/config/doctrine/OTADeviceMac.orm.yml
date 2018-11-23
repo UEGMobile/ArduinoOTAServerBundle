@@ -16,6 +16,10 @@ UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac:
         mac:
             type: string
             length: '64'
+        mode:
+            type: string
+            length: '16'
+            nullable: false
         createdAt:
             type: datetime
             column: created_at
@@ -32,9 +36,9 @@ UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac:
             options:
               default: false
     manyToOne:
-        otaBinary:
-            targetEntity: OTABinary
+        program:
+            targetEntity: OTAProgram
             joinColumn:
-                name: otaBinary
+                name: program
                 referencedColumnName: id
     lifecycleCallbacks: {  }

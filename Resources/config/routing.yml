@@ -1,2 +1,5 @@
 aotaserver_api:
-    resource: "@UEGMobileArduinoOTAServerBundle/Controller/"
+    resource: "@UEGMobileArduinoOTAServerBundle/Controller/Api"
+
+aotaserver_web:
+    resource: "@UEGMobileArduinoOTAServerBundle/Controller/Web"

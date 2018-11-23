@@ -1,0 +1,35 @@
+UEGMobile\ArduinoOTAServerBundle\Entity\OTAProgram:
+    type: entity
+    table: aotas_program
+    repositoryClass: UEGMobile\ArduinoOTAServerBundle\Repository\OTAProgramRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        programName:
+            type: string
+            length: 255
+    
+    manyToOne:
+        binaryAlpha:
+            targetEntity: OTABinary
+            joinColumn:
+                name: binaryAlpha
+                referencedColumnName: id
+
+        binaryBeta:
+            targetEntity: OTABinary
+            joinColumn:
+                name: binaryBeta
+                referencedColumnName: id
+
+        binaryProd:
+            targetEntity: OTABinary
+            joinColumn:
+                name: binaryProd
+                referencedColumnName: id
+
+    lifecycleCallbacks: {  }

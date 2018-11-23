@@ -7,6 +7,10 @@ namespace UEGMobile\ArduinoOTAServerBundle\Entity;
  */
 class OTADeviceMac
 {
+    const MODE_ALPHA = "ALPHA";
+    const MODE_BETA = "BETA";
+    const MODE_PROD = "PROD";
+
     /**
      * @var int
      */
@@ -18,9 +22,14 @@ class OTADeviceMac
     private $mac;
 
     /**
-     * @var \UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary
+     * @var \UEGMobile\ArduinoOTAServerBundle\Entity\OTAProgram
      */
-    private $otaBinary;
+    private $program;
+
+    /**
+     * @var string
+     */
+    private $mode;
 
     /**
      * @var \DateTime
@@ -40,10 +49,11 @@ class OTADeviceMac
     /**
      * Construct
      */
-    public function __construct()
+    public function __construct($mode)
     {
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt($this->createdAt());
+        $this->mode = $mode;
         $this->active = false;
     }
 
@@ -79,6 +89,31 @@ class OTADeviceMac
     public function getMac()
     {
         return $this->mac;
+    }
+
+
+    /**
+     * Set mode
+     *
+     * @param string $mode
+     *
+     * @return OTADeviceMac
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
+    }
+
+    /**
+     * Get mode
+     *
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->mode;
     }
 
     /**
