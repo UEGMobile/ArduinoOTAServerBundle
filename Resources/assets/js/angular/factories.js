@@ -2,7 +2,7 @@
 // Factorías y filtros
 /////////////////////////////////////////////////////////
 // Utils
-app.factory('appUtil', function($rootScope, localStorageService, $http, PROPERTIES, $stateParams, $translate, Upload) {
+app.factory('appUtil', function($rootScope, $http, PROPERTIES, $stateParams, $translate, Upload) {
     return {
         /**
          * Determina el idioma del usuario
@@ -91,9 +91,9 @@ app.factory('appUtil', function($rootScope, localStorageService, $http, PROPERTI
             if (args.login && args.login === true) {
                 url = symfony_controller + '/' + url;
             } else if (args.public && args.public === true) {
-                url = symfony_controller + '/web-api/public/' + url;
+                url = symfony_controller + '/aotaserver/web-api/public/' + url;
             } else {
-                url = symfony_controller + '/web-api/private/' + url;
+                url = symfony_controller + '/aotaserver/web-api/private/' + url;
             }
 
             var method = (args.method) ? args.method : 'GET';

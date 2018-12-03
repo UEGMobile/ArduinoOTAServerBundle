@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
 
-class ListProgramType extends AbstractType
+class ListProgramsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

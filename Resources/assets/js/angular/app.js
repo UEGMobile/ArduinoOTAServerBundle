@@ -1,6 +1,6 @@
 jQuery.noConflict();
 
-var app = angular.module('ArduinoOTAServerApp', ['ui.router', 'ngAnimate', 'ngSanitize', 'uuid4', 'yaru22.angular-timeago', 'ngFileUpload', 'bw.paging', 'angular-loading-bar']);
+var app = angular.module('ArduinoOTAServerApp', ['ui.router', 'ngAnimate', 'ngSanitize', 'uuid4', 'pascalprecht.translate', 'yaru22.angular-timeago', 'ngFileUpload', 'bw.paging', 'angular-loading-bar']);
 
 /////////////////////////////////////////////////////////
 // Constantes
@@ -33,7 +33,7 @@ app.constant("PROPERTIES", {
 
     // configures staticFilesLoader
     $translateProvider.useStaticFilesLoader({
-        prefix: '/assets/js/i18n/locale-',
+        prefix: '/bundles/uegmobilearduinootaserver/i18n/locale-',
         suffix: '.json'
     })
 

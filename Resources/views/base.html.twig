@@ -19,7 +19,7 @@
     <body class="{% block classBody %}default{% endblock %}" {{ app.debug ? 'data-env="debug"': '' }} >
         {% block body %}
 
-        <div class="arduino-ota-web-content" >
+        <div class="arduino-ota-web-content" ng-app="ArduinoOTAServerApp">
 
             <div class="ui container">
             
@@ -56,6 +56,8 @@
             <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-sanitize/angular-sanitize.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-ui-router/release/angular-ui-router.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-translate/angular-translate.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-uuid4/angular-uuid4.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-timeago/dist/angular-timeago.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/uegmobilearduinootaserver/js/angular-paging/dist/paging.min.js') }}"></script>

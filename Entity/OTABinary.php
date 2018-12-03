@@ -1,5 +1,4 @@
 <?php
-
 namespace UEGMobile\ArduinoOTAServerBundle\Entity;
 
 /**

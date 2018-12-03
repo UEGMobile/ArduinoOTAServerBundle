@@ -12,7 +12,7 @@ use FOS\RestBundle\View\View,
     FOS\RestBundle\Controller\Annotations\Post,
     FOS\RestBundle\Controller\Annotations\Delete,
     FOS\RestBundle\Controller\Annotations\Route;
-use UEGMobile\ArduinoOTAServerBundle\Form\Type\ListProgramType;
+use UEGMobile\ArduinoOTAServerBundle\Form\Type\ListProgramsType;
 use UEGMobile\ArduinoOTAServerBundle\Form\DTO\ListProgramsDTO;
 
 
@@ -105,15 +105,15 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/programs", name="web_api_programs", defaults={"_format" = "json"})
+     * @Route("/web-api/public/programs", defaults={"_format" = "json"})
      */
     public function getProgramsAction(Request $request) {
 
         try {
 
-            $formFactory = $this->getContainer()->get('formFactory');
+            $formFactory =$this->container->get('formFactory');
             $form = $formFactory->create(
-                ListProgramType::class,
+                ListProgramsType::class,
                 new ListProgramsDTO(),
                 [ 'csrf_protection' => false ]
             );
@@ -139,7 +139,6 @@ class ApiController extends Controller
                     $i++;
                 }
         
-    
                 $em = $this->getContainer()->get('doctrine')->getManager();
                 $repositoryPrograms = $em->getRepository('UEGMobileArduinoOTAServerBundle:Program');
                 $paginatedCollection = $repositoryPrograms->findAllPaginated(
@@ -149,19 +148,22 @@ class ApiController extends Controller
                     $programNameFilter,
                     $globalFilter
                 );
-        
                 $paginatedCollection->setMaxPerPage($limit);
                 $paginatedCollection->setCurrentPage($page);
                 return (new PagerfantaFactory())->createRepresentation(
                     $paginatedCollection, 
-                    new \Hateoas\Configuration\Route('web_api_programs'));
+                    new \Hateoas\Configuration\Route('uegmobile_arduinootaserver_api_api_getprograms'));
 
             } else {
-                return $this->sendBadRequestResponse('program.exception.invalid_request'); 
+                return new Response(
+                    array('message' => 'program.exception.invalid_request'),
+                    400);
             }
 
         } catch (\Exception $e){
-            return $this->sendBadRequestResponse('program.exception.invalid_request'); 
+            return new Response(
+                array('message' =>  $e->getMessage()),
+                400);
         }
     }
 

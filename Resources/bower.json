@@ -27,7 +27,9 @@
     "angular-sanitize": "^1.7.0",
     "angular-animate": "^1.7.0",
     "angular-translate": "^2.18.0",
-    "angular-paging": "^2.2.2"
+    "angular-paging": "^2.2.2",
+    "angular-translate-loader-static-files": "^2.18.1",
+    "angular-translate-interpolation-messageformat": "^2.18.1"
   },
   "devDependencies": {}
 }

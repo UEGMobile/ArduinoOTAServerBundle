@@ -23,22 +23,29 @@ app.controller('ArduinoProgramListCtrl', function($scope, $rootScope, ProgramSer
         var buttons = "<button class='edit-button'>Edit</button>";
 
         // Setup #centers_table DataTable
-        var table = jQuery("#users_table").DataTable({
+        var table = jQuery("#program_table").DataTable({
             "processing": true, // Indicador de procesamiento
             "serverSide": true, // Procesamiento del lado servidor
             "stateSave": false, //
             "select": false,    // Para seleccionar elementos en una tabla, por defecto es false
-            "ajax": $scope.loadUsers,
+            "ajax": $scope.loadPrograms,
             "columns":[
-                { "data": "first_name" },
-                { "data": "last_name" },
-                { "data": "username" },
-                { "data": "roleNames" , "render": function ( data, type, row, meta ) {
-                    return $translate.instant(data);
+                { "data": "id" },
+                { "data": "name" },
+                { "data": null, "render": function ( data, type, row, meta ) {
+                    return 'alpha';
                     }
                 },
-                { "data": "is_enabled" , "render": function (data) {
-                    return data ? '<a class="ui green empty circular label"></a>':'<a class="ui red empty circular label"></a>';
+                { "data": null , "render": function ( data, type, row, meta ) {
+                    return 'beta';
+                    }
+                },                
+                { "data": null , "render": function ( data, type, row, meta ) {
+                    return 'prod';
+                    }
+                },
+                { "data": null , "render": function (data) {
+                    return 'created_at';
                 }
                 },
                 { "data": null, "defaultContent": buttons},
@@ -49,7 +56,7 @@ app.controller('ArduinoProgramListCtrl', function($scope, $rootScope, ProgramSer
         });
 
         // Setup - add a text input to each footer cell
-        jQuery('#users_table tfoot th').each( function (i) {
+        jQuery('#program_table tfoot th').each( function (i) {
             var title = jQuery(this).text();
             var searchType = jQuery(this).attr('search-type');
             if(title && searchType == 'text'){
@@ -83,7 +90,7 @@ app.controller('ArduinoProgramListCtrl', function($scope, $rootScope, ProgramSer
         });
 
         // Click button on cell
-        jQuery('#users_table tbody').on( 'click', 'button', function () {
+        jQuery('#program_table tbody').on( 'click', 'button', function () {
             var data = table.row( jQuery(this).parents('tr') ).data();
             $window.location.href = data.web_url_edit;
         });
@@ -91,7 +98,7 @@ app.controller('ArduinoProgramListCtrl', function($scope, $rootScope, ProgramSer
         jQuery('.ui.dropdown.upward').dropdown({'direction': 'upward'});
     };
 
-    $scope.loadUsers = function (data, callback, settings) {
+    $scope.loadPrograms = function (data, callback, settings) {
 
         // Filtering params
         var filterValue = [];
@@ -126,7 +133,7 @@ app.controller('ArduinoProgramListCtrl', function($scope, $rootScope, ProgramSer
             'filterParameter': filterParameter.join(",")
         };
 
-        UserService.getUsers(params).then(
+        ProgramService.getPrograms(params).then(
             //success
             function (data) {
                 var result = {
