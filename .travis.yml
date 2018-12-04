@@ -4,7 +4,7 @@ language: php
 
 php:
   - 7.1
-
+    
 matrix:
   fast_finish: true
   include:
@@ -23,5 +23,7 @@ before_install:
 install:
     - ./vendor/bin/simple-phpunit install
   
+
 script:
-    - phpunit -c app
+    - composer validate --strict --no-check-lock
+    - composer test
