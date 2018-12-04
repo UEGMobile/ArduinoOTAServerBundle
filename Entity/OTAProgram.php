@@ -1,12 +1,7 @@
 <?php
 
 namespace UEGMobile\ArduinoOTAServerBundle\Entity;
-use JMS\Serializer\Annotation as Serializer;
 
-/**
- * OTAProgram
- * @Serializer\XmlRoot("program")
- */
 class OTAProgram
 {
 

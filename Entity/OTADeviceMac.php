@@ -2,9 +2,6 @@
 
 namespace UEGMobile\ArduinoOTAServerBundle\Entity;
 
-/**
- * OTADeviceMac
- */
 class OTADeviceMac
 {
     const MODE_ALPHA = "ALPHA";

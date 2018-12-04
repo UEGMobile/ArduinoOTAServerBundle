@@ -1,9 +1,6 @@
 <?php
 namespace UEGMobile\ArduinoOTAServerBundle\Entity;
 
-/**
- * OTABinary
- */
 class OTABinary
 {
     
