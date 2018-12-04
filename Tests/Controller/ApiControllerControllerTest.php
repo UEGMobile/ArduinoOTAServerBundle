@@ -4,7 +4,7 @@ namespace UEGMobile\ArduinoOTAServerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ApiControllerControllerTest extends WebTestCase
+class ApiControllerControllerTest //extends WebTestCase
 {
     public function testUpdatebinary()
     {
