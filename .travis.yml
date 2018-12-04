@@ -33,5 +33,4 @@ install:
     - ./vendor/bin/simple-phpunit install
 
 script:
-    - composer validate --strict --no-check-lock
     - ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
