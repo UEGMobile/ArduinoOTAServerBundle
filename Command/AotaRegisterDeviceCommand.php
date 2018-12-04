@@ -22,7 +22,7 @@ class AotaRegisterDeviceCommand extends ContainerAwareCommand
         $this
             ->setName('aotaserver:register:device')
             ->setDescription('Register a Device, and associate with a Program')
-            ->addArgument('deviceId', InputArgument::REQUIRED, 'Device Id to update')
+            ->addArgument('mac', InputArgument::REQUIRED, 'Device MAC Address')
             ->addArgument('programId', InputArgument::REQUIRED, 'Program Id')
             ->addArgument('mode', InputArgument::REQUIRED, 'Mode (ALPHA, BETA, PROD)')
         ;

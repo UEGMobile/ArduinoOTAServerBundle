@@ -206,5 +206,4 @@ class ArduinoOTAServerService
         return $device;
     }
 
-
 }
