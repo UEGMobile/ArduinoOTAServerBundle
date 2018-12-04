@@ -30,11 +30,7 @@
         "doctrine/doctrine-migrations-bundle": "^1.1",
         "monolog/monolog":                "~1.18",
         "friendsofsymfony/rest-bundle":   "^1.7",
-        "mmoreram/simple-doctrine-mapping": "^1.0",
-        "white-october/pagerfanta-bundle": "^1.2",
-        "willdurand/hateoas":              "^2.10",
-        "willdurand/hateoas-bundle":       "^1.2",
-        "jms/serializer-bundle":           "~2.3|~3.0"
+        "mmoreram/simple-doctrine-mapping": "^1.0"
     },
     "require-dev": {
         "symfony/yaml": "~2.3|~3.0",

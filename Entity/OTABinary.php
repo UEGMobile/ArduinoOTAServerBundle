@@ -43,19 +43,10 @@ class OTABinary
     private $createdAt;
 
     /**
-     * @var OTAProgram
-     */
-    private $program;
-
-    /**
      * Construct
      */
-    public function __construct($program = null)
+    public function __construct()
     {
-        if(is_null($program)){
-            $program = new Program();
-        }
-        $this->setProgram($program);
         $this->setCreatedAt(new \DateTime());
     }
 
@@ -211,30 +202,6 @@ class OTABinary
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set program
-     *
-     * @param Program $program
-     *
-     * @return OTABinary
-     */
-    public function setProgram($program)
-    {
-        $this->program = $program;
-
-        return $this;
-    }
-
-    /**
-     * Get program
-     *
-     * @return Program
-     */
-    public function getProgram()
-    {
-        return $this->program;
     }
 
 }

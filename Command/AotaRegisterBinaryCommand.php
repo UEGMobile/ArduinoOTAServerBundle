@@ -7,11 +7,13 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary;
+use UEGMobile\ArduinoOTAServerBundle\Service\ArduinoOTAServerService;
 
 class AotaRegisterBinaryCommand extends ContainerAwareCommand
 {
+    protected $arduinoOTAServerService;
+
     protected function configure()
     {
         $this
@@ -23,6 +25,10 @@ class AotaRegisterBinaryCommand extends ContainerAwareCommand
             ->addArgument('sdkVersion', InputArgument::REQUIRED, 'Firmaware SDK version')
             ->addArgument('binaryPath', InputArgument::REQUIRED, 'Binary file path')
         ;
+    }
+
+    public function setOTAServerService(ArduinoOTAServerService $arduinoOTAServerService){
+        $this->arduinoOTAServerService = $arduinoOTAServerService;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -37,18 +43,22 @@ class AotaRegisterBinaryCommand extends ContainerAwareCommand
         if($content === FALSE){
             $output->writeln('Cannot access '.$binaryPath.' to read contents.');
         }else{
-            $otaBinary = new OTABinary();
-            $otaBinary->setBinaryName($binaryName);
-            $otaBinary->setBinaryVersion($binaryVersion);
-            $otaBinary->setUserAgent($userAgent);
-            $otaBinary->setSdkVersion($sdkVersion);
-            $otaBinary->setBinaryFile($content);        
-            
-            $em = $this->getContainer()->get('doctrine')->getManager();
-            $em->persist($otaBinary);
-            $em->flush();
-            
-            $output->writeln('Register '.$binaryName.' done!');
+
+            try{
+                $binary = $this->arduinoOTAServerService->registerBinary(
+                    $binaryName,
+                    $binaryVersion,
+                    $userAgent,
+                    $sdkVersion,
+                    $content
+                );
+                $em = $this->getContainer()->get('doctrine')->getManager();
+                $em->flush();
+        
+                $output->writeln('Register '.$binary->getBinaryName().' with id '.$binary->getId().' done!');    
+            }catch(\Exception $e){
+                $output->writeln('Cannot register: '.$e->getMessage());            
+            }
         }        
     }
 }

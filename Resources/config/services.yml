@@ -1,4 +1,92 @@
 services:
-#    ueg_mobile_arduino_ota_server.example:
-#        class: UEGMobile\ArduinoOTAServerBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+
+    arduino_ota_server.repository.ota_binary_repository:
+        class: UEGMobile\ArduinoOTAServerBundle\Repository\OTABinaryRepository
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        public: false
+        arguments:
+            - UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary
+
+    arduino_ota_server.repository.ota_device_mac_repository:
+        class: UEGMobile\ArduinoOTAServerBundle\Repository\OTADeviceMacRepository
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        public: false
+        arguments:
+            - UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac
+
+    arduino_ota_server.repository.ota_program_repository:
+        class: UEGMobile\ArduinoOTAServerBundle\Repository\OTAProgramRepository
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        public: false
+        arguments:
+            - UEGMobile\ArduinoOTAServerBundle\Entity\OTAProgram
+
+    arduino_ota_server.service.ota_server_service:
+        class: UEGMobile\ArduinoOTAServerBundle\Service\ArduinoOTAServerService
+        public: true
+        arguments:
+          - "@arduino_ota_server.repository.ota_binary_repository"
+          - "@arduino_ota_server.repository.ota_device_mac_repository"
+          - "@arduino_ota_server.repository.ota_program_repository"
+          - "@logger"
+
+    arduino_ota_server_service:
+        alias: arduino_ota_server.service.ota_server_service
+        public: true
+
+    arduino_ota_server.command.ota_list_binary_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaListBinaryCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }
+
+    arduino_ota_server.command.ota_list_program_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaListProgramCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }
+
+    arduino_ota_server.command.ota_list_devices_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaListDeviceCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }
+
+    arduino_ota_server.command.ota_register_device_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaRegisterDeviceCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }
+
+
+    arduino_ota_server.command.ota_register_program_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaRegisterProgramCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }
+
+    arduino_ota_server.command.ota_register_binary_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaRegisterBinaryCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }
+
+    arduino_ota_server.command.ota_update_device_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaUpdateDeviceCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }
+
+    arduino_ota_server.command.ota_update_program_command:
+        class: UEGMobile\ArduinoOTAServerBundle\Command\AotaUpdateProgramCommand
+        calls:
+            - [ setOTAServerService, ["@arduino_ota_server.service.ota_server_service"]]
+        tags:
+            - { name : console.command }

@@ -11,7 +11,9 @@ UEGMobile\ArduinoOTAServerBundle\Entity\OTADeviceMac:
     indexes:
       mac_index:
         columns: [ mac ]
-
+    uniqueConstraints:
+        device_mac_idx:
+            columns: mac
     fields:
         mac:
             type: string

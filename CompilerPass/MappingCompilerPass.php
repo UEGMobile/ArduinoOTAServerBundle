@@ -35,6 +35,13 @@ class MappingCompilerPass extends AbstractMappingCompilerPass
                 '@UEGMobileArduinoOTAServerBundle/Resources/config/doctrine/OTADeviceMac.orm.yml',
                 true
             )                
+            ->addEntityMapping(
+                $container,
+                'default',
+                'UEGMobile\ArduinoOTAServerBundle\Entity\OTAProgram',
+                '@UEGMobileArduinoOTAServerBundle/Resources/config/doctrine/OTAProgram.orm.yml',
+                true
+            )                
         ;
     }
 }

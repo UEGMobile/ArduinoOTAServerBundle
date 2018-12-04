@@ -49,12 +49,12 @@ class OTADeviceMac
     /**
      * Construct
      */
-    public function __construct($mode)
+    public function __construct($mode = OTADeviceMac::MODE_ALPHA)
     {
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt($this->createdAt());
         $this->mode = $mode;
         $this->active = false;
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt($this->getCreatedAt());
     }
 
     /**
@@ -117,27 +117,27 @@ class OTADeviceMac
     }
 
     /**
-     * Set otaBinary
+     * Set program
      *
-     * @param \UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary $otaBinary
+     * @param \UEGMobile\ArduinoOTAServerBundle\Entity\OTAProgram $program
      *
-     * @return OTADeviceMac
+     * @return OTAProgram
      */
-    public function setOtaBinary($otaBinary)
+    public function setProgram($program)
     {
-        $this->otaBinary = $otaBinary;
+        $this->program = $program;
 
         return $this;
     }
 
     /**
-     * Get otaBinary
+     * Get program
      *
-     * @return \UEGMobile\ArduinoOTAServerBundle\Entity\OTABinary
+     * @return \UEGMobile\ArduinoOTAServerBundle\Entity\OTAProgram
      */
-    public function getOtaBinary()
+    public function getProgram()
     {
-        return $this->otaBinary;
+        return $this->program;
     }
 
     /**
@@ -171,7 +171,7 @@ class OTADeviceMac
      *
      * @return OTADeviceMac
      */
-    public function setUpdateAt($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
