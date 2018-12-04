@@ -24,4 +24,4 @@ before_install:
     - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony:"$SYMFONY_VERSION"; fi
     - COMPOSER_MEMORY_LIMIT=-1 composer install
 install:
-    - composer update $COMPOSER_FLAGS
+    - composer install $COMPOSER_FLAGS
