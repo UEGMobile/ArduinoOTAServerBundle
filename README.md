@@ -225,37 +225,29 @@ The ArduinoOTAServerService is available from the container:
 ArduinoOTAServerService public methods to get entities are:
 
 - public function getProgram(string $programId): ?OTAProgram 
-
 - public function getDevice(string $deviceId): ?OTADeviceMac  
-
 - public function getBinary(string $binaryId): ?OTABinary
 
 ArduinoOTAServerService public methods to search entities are:
 
 - public function searchPrograms(string $programName = null, int $page = 1, int $limit = 10, array $sort = []): ?Pagerfanta
-
 - public function searchDevices(string $deviceMAC = null, int $page = 1, int $limit = 10, array $sort = []): ?Pagerfanta 
-
 - public function searchBinaries(string $binaryName = null, string $binaryVersion = null, string $userAgent = null, string $sdkVersion = null, int $page = 1, int $limit = 10,array $sort = []): ?Pagerfanta
 
 ArduinoOTAServerService public methods to register entities are:
 
 - public function registerProgram(string $programName): OTAProgram
-    
 - public function registerDevice(string $deviceMAC, OTAProgram $program, string $mode = OTADeviceMac::MODE_ALPHA): OTADeviceMAC
-    
 - public function registerBinary(string $binaryName, string $binaryVersion, string $userAgent, string $sdkVersion, $binaryFile): OTABinary 
 
 ArduinoOTAServerService public methods to update entities are:
 
 - public function updateProgram($programId, $programName = null, $binaryAlpha = null, $binaryBeta = null, $binaryProd = null): OTADeviceMAC
-    
 - public function updateDevice($deviceId, OTAProgram $program = null, string $mode = OTADeviceMac::MODE_ALPHA, bool $active = null): OTADeviceMAC
 
 ArduinoOTAServerService public method to get OTA binary is:
 
 - public function searchBinaryByMACAddress(string $MACAddress): ?OTABinary
-
 
 Configure arduino
 ------------------------
