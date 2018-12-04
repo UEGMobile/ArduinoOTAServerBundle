@@ -31,6 +31,3 @@ before_install:
 install:
     - COMPOSER_MEMORY_LIMIT=-1 composer install $COMPOSER_FLAGS --prefer-dist --no-interaction
     - ./vendor/bin/simple-phpunit install
-
-script:
-    - ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
