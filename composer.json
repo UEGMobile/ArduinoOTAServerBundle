@@ -45,7 +45,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/simple-phpunit"
+        "test": "vendor/bin/simple-phpunit Tests"
     },
     "target-dir" : "UEGMobile/ArduinoOTAServerBundle"
 }
