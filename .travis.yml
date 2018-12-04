@@ -10,7 +10,7 @@ env:
     global:
         - PHPUNIT_FLAGS="-v"
         - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
-
+        
 php:
   - 7.1
 
@@ -19,9 +19,9 @@ matrix:
   include:
     # Test against Symfony LTS versions
     - php: 7.1
-      env: SYMFONY_VERSION="2.8.*" COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
+      env: SYMFONY_VERSION="2.8.*" DEPENDENCIES=stable
     - php: 7.1
-      env: SYMFONY_VERSION="3.4.*" COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
+      env: SYMFONY_VERSION="3.4.*" DEPENDENCIES=stable
 
 before_install:
     - composer self-update
