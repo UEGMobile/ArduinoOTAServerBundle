@@ -15,9 +15,12 @@ Documentation
 This plugin is developer for [Arduino core for ESP8266 WiFi chip](https://github.com/esp8266/Arduino/). See section https://github.com/esp8266/Arduino/blob/master/doc/ota_updates/readme.md#http-server
 
 Include in version 2:
-     - New 'Program' Entity
-     - New 'ArduinoOTAServerService' Service
-     - New concole commands
+
+- New 'Program' Entity
+
+- New 'ArduinoOTAServerService' Service
+
+- New concole commands
 
 Since v.1.2.0 compatible with  [Arduino core for ESP32 WiFi chip] (https://github.com/espressif/arduino-esp32).
 
@@ -102,7 +105,7 @@ Register programs with Symfony console commands
 
 * Register new program to be available in OTA server
 
-    $ php bin/console aotaserver:register:program <porgramName> 
+    $ php bin/console aotaserver:register:program porgramName 
 
 Example:
 
@@ -127,7 +130,7 @@ Register binaries with Symfony console commands
 
 * Register new binary to be available in OTA server
 
-    $ php bin/console aotaserver:register:binary <binaryName> <binaryVersion> <userAgent> <sdkVersion> <binaryPath>
+    $ php bin/console aotaserver:register:binary binaryName binaryVersion userAgent sdkVersion binaryPath
 
 Example:
 
@@ -153,7 +156,7 @@ Register device with Symfony console commands
 
 * Register new device to be available in OTA server
 
-    $ php bin/console aotaserver:register:device <mac> <programId> <mode>
+    $ php bin/console aotaserver:register:device mac programId mode
 
 Example:
 
@@ -178,7 +181,7 @@ Update device with Symfony console commands
 
 * Update configuration device and set Beta, Alpha or Prod Mode in OTA server
 
-    $ php bin/console aotaserver:update:device <deviceId> [<programId>] [<mode>] [<active>]
+    $ php bin/console aotaserver:update:device deviceId programId mode active
 
 Example:
 
@@ -191,7 +194,7 @@ Update device with Symfony console commands
 
 * Update configuration device and set Beta, Alpha or Prod Mode in OTA server
 
-    $ php bin/console aotaserver:update:device <deviceId> [<programId>] [<mode>] [<active>]
+    $ php bin/console aotaserver:update:device deviceId programId mode active
 
 Example:
 
@@ -205,7 +208,7 @@ Update program with Symfony console commands
 
 * Update name progam in OTA server
 
-    $ php bin/console aotaserver:update:program <programId> <name>
+    $ php bin/console aotaserver:update:program programId name
 
 Example:
 
@@ -219,24 +222,39 @@ The ArduinoOTAServerService is available from the container:
 
     $arduinoOTAServerService = $this->container->get('arduino_ota_server_service');
 
-ArduinoOTAServerService public methods are:
+ArduinoOTAServerService public methods to get entities are:
 
-    - public function getProgram(string $programId): ?OTAProgram 
-    - public function getDevice(string $deviceId): ?OTADeviceMac 
-    - public function getBinary(string $binaryId): ?OTABinary
+- public function getProgram(string $programId): ?OTAProgram 
 
-    - public function searchPrograms(string $programName = null, int $page = 1, int $limit = 10, array $sort = []): ?Pagerfanta
-    - public function searchDevices(string $deviceMAC = null, int $page = 1, int $limit = 10, array $sort = []): ?Pagerfanta 
-    - public function searchBinaries(string $binaryName = null, string $binaryVersion = null, string $userAgent = null, string $sdkVersion = null, int $page = 1, int $limit = 10,array $sort = []): ?Pagerfanta
+- public function getDevice(string $deviceId): ?OTADeviceMac  
 
-    - public function registerProgram(string $programName): OTAProgram
-    - public function registerDevice(string $deviceMAC, OTAProgram $program, string $mode = OTADeviceMac::MODE_ALPHA): OTADeviceMAC
-    - public function registerBinary(string $binaryName, string $binaryVersion, string $userAgent, string $sdkVersion, $binaryFile): OTABinary 
+- public function getBinary(string $binaryId): ?OTABinary
 
-    - public function updateProgram($programId, $programName = null, $binaryAlpha = null, $binaryBeta = null, $binaryProd = null): OTADeviceMAC
-    - public function updateDevice($deviceId, OTAProgram $program = null, string $mode = OTADeviceMac::MODE_ALPHA, bool $active = null): OTADeviceMAC
+ArduinoOTAServerService public methods to search entities are:
 
-    - public function searchBinaryByMACAddress(string $MACAddress): ?OTABinary
+- public function searchPrograms(string $programName = null, int $page = 1, int $limit = 10, array $sort = []): ?Pagerfanta
+
+- public function searchDevices(string $deviceMAC = null, int $page = 1, int $limit = 10, array $sort = []): ?Pagerfanta 
+
+- public function searchBinaries(string $binaryName = null, string $binaryVersion = null, string $userAgent = null, string $sdkVersion = null, int $page = 1, int $limit = 10,array $sort = []): ?Pagerfanta
+
+ArduinoOTAServerService public methods to register entities are:
+
+- public function registerProgram(string $programName): OTAProgram
+    
+- public function registerDevice(string $deviceMAC, OTAProgram $program, string $mode = OTADeviceMac::MODE_ALPHA): OTADeviceMAC
+    
+- public function registerBinary(string $binaryName, string $binaryVersion, string $userAgent, string $sdkVersion, $binaryFile): OTABinary 
+
+ArduinoOTAServerService public methods to update entities are:
+
+- public function updateProgram($programId, $programName = null, $binaryAlpha = null, $binaryBeta = null, $binaryProd = null): OTADeviceMAC
+    
+- public function updateDevice($deviceId, OTAProgram $program = null, string $mode = OTADeviceMac::MODE_ALPHA, bool $active = null): OTADeviceMAC
+
+ArduinoOTAServerService public method to get OTA binary is:
+
+- public function searchBinaryByMACAddress(string $MACAddress): ?OTABinary
 
 
 Configure arduino
