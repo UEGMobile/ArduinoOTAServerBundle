@@ -3,6 +3,7 @@ sudo: false
 language: php
 
 php:
+  - 5.6
   - 7.1
     
 matrix:
@@ -13,6 +14,10 @@ matrix:
       env: SYMFONY_VERSION="2.8.*" DEPENDENCIES=stable
     - php: 7.1
       env: SYMFONY_VERSION="3.4.*" DEPENDENCIES=stable
+    - php: 5.6
+      env: SYMFONY_VERSION="2.8.*" DEPENDENCIES=stable
+    - php: 5.6
+      env: SYMFONY_VERSION="3.4.*" DEPENDENCIES=stable
 
 before_install:
     - composer self-update
@@ -20,7 +25,5 @@ before_install:
     - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony:"$SYMFONY_VERSION"; fi
     - COMPOSER_MEMORY_LIMIT=-1 composer install -v --prefer-dist --no-interaction
   
-
 script:
     - composer validate
-    #- composer test
