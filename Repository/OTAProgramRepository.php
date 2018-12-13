@@ -31,12 +31,14 @@ class OTAProgramRepository extends \Doctrine\ORM\EntityRepository
                 if(strcmp($property, 'name') == 0) {
                     $queryBuilder->addOrderBy('program.name', $order);
                 } elseif (strcmp($property, 'updated_at') == 0) {
-                    $queryBuilder->addOrderBy('program.updated_at', $order);
+                    $queryBuilder->addOrderBy('program.updatedAt', $order);
                 } elseif (strcmp($property, 'created_at') == 0) {
-                    $queryBuilder->addOrderBy('program.created_at', $order);
+                    $queryBuilder->addOrderBy('program.createdAt', $order);
                 }
             }
         }
+        $queryBuilder->addOrderBy('program.createdAt', 'desc');
+        
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder, false, false));
     }
 

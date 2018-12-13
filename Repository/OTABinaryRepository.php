@@ -46,14 +46,14 @@ class OTABinaryRepository extends \Doctrine\ORM\EntityRepository
                 if(strcmp($property, 'name') == 0) {
                     $queryBuilder->addOrderBy('binary.binaryName', $order);
                 } elseif (strcmp($property, 'version') == 0) {
-                    $queryBuilder->addOrderBy('binary.version', $order);
-                } elseif (strcmp($property, 'updated_at') == 0) {
-                    $queryBuilder->addOrderBy('binary.updated_at', $order);
+                    $queryBuilder->addOrderBy('binary.binaryVersion', $order);
                 } elseif (strcmp($property, 'created_at') == 0) {
-                    $queryBuilder->addOrderBy('binary.created_at', $order);
+                    $queryBuilder->addOrderBy('binary.createdAt', $order);
                 }
             }
         }
+        $queryBuilder->addOrderBy('binary.createdAt', 'desc');
+        
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder, false, false));
     }
     

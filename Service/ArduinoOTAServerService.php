@@ -165,7 +165,7 @@ class ArduinoOTAServerService
         $binaryAlpha = null,
         $binaryBeta = null,
         $binaryProd = null
-    ): OTADeviceMAC{
+    ): OTAProgram{
 
         $program = $this->otaProgramRepository->findOneById($programId);
         if(!is_null($programName)){

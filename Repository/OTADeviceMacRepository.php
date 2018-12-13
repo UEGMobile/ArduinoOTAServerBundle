@@ -27,16 +27,18 @@ class OTADeviceMacRepository extends \Doctrine\ORM\EntityRepository
         foreach ($sort as $property => $order) {
             if (!empty($order) ) {
                 if(strcmp($property, 'program') == 0) {
-                    $queryBuilder->addOrderBy('program.name', $order);
+                    $queryBuilder->addOrderBy('device.name', $order);
                 } elseif (strcmp($property, 'mac') == 0) {
                     $queryBuilder->addOrderBy('device.mac', $order);
-                } elseif (strcmp($property, 'updated_at') == 0) {
-                    $queryBuilder->addOrderBy('program.updated_at', $order);
-                } elseif (strcmp($property, 'created_at') == 0) {
-                    $queryBuilder->addOrderBy('program.created_at', $order);
+                } elseif (strcmp($property, 'updatedAt') == 0) {
+                    $queryBuilder->addOrderBy('device.updatedAt', $order);
+                } elseif (strcmp($property, 'createdAt') == 0) {
+                    $queryBuilder->addOrderBy('device.createdAt', $order);
                 }
             }
         }
+        $queryBuilder->addOrderBy('device.createdAt', 'desc');
+        
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder, false, false));
     }
 

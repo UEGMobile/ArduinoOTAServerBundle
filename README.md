@@ -242,7 +242,7 @@ ArduinoOTAServerService public methods to register entities are:
 
 ArduinoOTAServerService public methods to update entities are:
 
-- public function updateProgram($programId, $programName = null, $binaryAlpha = null, $binaryBeta = null, $binaryProd = null): OTADeviceMAC
+- public function updateProgram($programId, $programName = null, $binaryAlpha = null, $binaryBeta = null, $binaryProd = null): OTAProgram
 - public function updateDevice($deviceId, OTAProgram $program = null, string $mode = OTADeviceMac::MODE_ALPHA, bool $active = null): OTADeviceMAC
 
 ArduinoOTAServerService public method to get OTA binary is:
