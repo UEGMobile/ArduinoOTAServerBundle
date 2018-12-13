@@ -25,7 +25,7 @@ class OTABinaryRepository extends \Doctrine\ORM\EntityRepository
         $queryBuilder = $queryBuilder->setFirstResult(($page-1)*$limit);
 
         if (!empty($binaryName)){
-            $queryBuilder = $queryBuilder->andWhere('(binary.name like :binaryName)');
+            $queryBuilder = $queryBuilder->andWhere('(binary.binaryName like :binaryName)');
             $queryBuilder = $queryBuilder->setParameter('binaryName', '%'.$binaryName.'%');
         }
         if (!empty($binaryVersion)){
@@ -44,7 +44,7 @@ class OTABinaryRepository extends \Doctrine\ORM\EntityRepository
         foreach ($sort as $property => $order) {
             if (!empty($order) ) {
                 if(strcmp($property, 'name') == 0) {
-                    $queryBuilder->addOrderBy('binary.name', $order);
+                    $queryBuilder->addOrderBy('binary.binaryName', $order);
                 } elseif (strcmp($property, 'version') == 0) {
                     $queryBuilder->addOrderBy('binary.version', $order);
                 } elseif (strcmp($property, 'updated_at') == 0) {
