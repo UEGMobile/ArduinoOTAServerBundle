@@ -12,7 +12,7 @@ for Arduino with ESP8266 wifi chip.
 Documentation
 -------------
 
-This plugin is developer for [Arduino core for ESP8266 WiFi chip](https://github.com/esp8266/Arduino/). See section https://github.com/esp8266/Arduino/tree/master/doc/ota_updates
+This plugin is developer for [Arduino core for ESP8266 WiFi chip](https://github.com/esp8266/Arduino/). See section https://github.com/esp8266/Arduino/tree/master/doc/ota_updates#http-server
 
 Include in version 2:
 
